@@ -8,11 +8,9 @@
 
 ---
 
-## <img src="https://raw.githubusercontent.com/abhisheknaiidu/abhisheknaiidu/master/code.gif" align="right" width="380" alt="coding"/>
+## <img src="https://raw.githubusercontent.com/abhisheknaiidu/abhisheknaiidu/master/code.gif" align="right" width="710" alt="coding"/>
 
 ### 👨‍💻 About Me
-
-## 🛠️ Tech Stack
 
 ### 📝 Languages
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
@@ -74,16 +72,6 @@
 <div align="center">
   
   [![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=abdulrahmanrifayath&theme=tokyo-night&bg_color=0d1117&color=70a5fd&line=bf91f3&point=38bdae&area=true&hide_border=true)](https://github.com/abdulrahmanrifayath)
-  
-</div>
-
----
-
-## 🏆 Achievements & Trophies
-
-<div align="center">
-  
-  [![trophy](https://github-profile-trophy.vercel.app/?username=abdulrahmanrifayath&theme=tokyonight&no-frame=true&no-bg=true&row=1&column=7&margin-w=4)](https://github.com/abdulrahmanrifayath)
   
 </div>
 
