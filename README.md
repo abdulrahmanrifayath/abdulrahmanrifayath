@@ -12,39 +12,6 @@
 
 ### 👨‍💻 About Me
 
-```python
-class AI_Engineer:
-    def __init__(self):
-        self.name = "Abdul Rahman Rifayath S"
-        self.location = "Coimbatore, Tamil Nadu, India 🌏"
-        self.current_role = "B.Tech Student | AI & Data Science"
-        self.education = "V.S.B College of Engineering Technical Campus"
-        self.cgpa = "8.11/10 ⭐"
-        
-    def skill_stack(self):
-        languages = ["Python 🐍", "Java ☕"]
-        ml_frameworks = ["NLTK", "Scikit-learn", "TensorFlow"]
-        cloud_platforms = ["AWS", "Azure"]
-        databases = ["SQL", "MongoDB"]
-        tools = ["Git", "GitHub"]
-        return {languages, ml_frameworks, cloud_platforms, databases, tools}
-    
-    def currently_learning(self):
-        return ["LangChain 🦜", "RAG Systems", "Vector Databases", "FastAPI", "Streamlit"]
-    
-    def fun_fact(self):
-        return "Patent holder 🏆 | Published Researcher 📄 | Cloud Computing Enthusiast ☁️"
-    
-    def life_philosophy(self):
-        return "Build. Learn. Innovate. Repeat. 🚀"
-
-if __name__ == "__main__":
-    engineer = AI_Engineer()
-    print("Welcome to my GitHub! Let's innovate together 🎯")
-```
-
----
-
 ## 🛠️ Tech Stack
 
 ### 📝 Languages
