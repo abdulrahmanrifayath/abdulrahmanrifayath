@@ -8,7 +8,7 @@
 
 ---
 
-## <img src="https://raw.githubusercontent.com/abhisheknaiidu/abhisheknaiidu/master/code.gif" align="right" width="615" alt="coding"/>
+## <img src="https://raw.githubusercontent.com/abhisheknaiidu/abhisheknaiidu/master/code.gif" align="right" width="590" alt="coding"/>
 
 ### 👨‍💻 About Me
 
