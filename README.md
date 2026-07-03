@@ -82,7 +82,7 @@
 <details open>
 <summary><b>Cloud Computing Intern | Litz Tech</b> • <i>Jun 2025 - Jul 2025 • Coimbatore</i></summary>
 
-> **Tech Stack:** AWS | Azure | IaaS | PaaS | SaaS | Cloud Architecture
+> **Tech Stack:** AWS | IaaS | PaaS | SaaS | Cloud Architecture
 
 - 🚀 Gained hands-on experience with cloud platforms (AWS & Azure) and deployed applications across multiple cloud environments
 - 📚 Mastered cloud service models (IaaS, PaaS, SaaS) and deployment strategies (public, private, hybrid cloud architectures)
