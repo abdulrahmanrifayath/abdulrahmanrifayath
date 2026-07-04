@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # Once every day (00:00 UTC)
+    - cron: "0 0 * * *"   # Runs once every day at 00:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -13,20 +13,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Update activity file
-        run: |
-          echo "Last update: $(date)" >> activity.log
-
-      - name: Commit changes
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add activity.log
+      - name: Generate 7-10 Random Commits
+        run: |
+          # Random number between 7 and 10
+          COMMITS=$(( ( RANDOM % 4 ) + 7 ))
 
-          git diff --cached --quiet || git commit -m "Daily activity update"
+          echo "Creating $COMMITS commits..."
 
-      - name: Push
-        run: git push
+          for ((i=1; i<=COMMITS; i++))
+          do
+            echo "$(date) - Automatic activity $i" >> activity.log
+
+            git add activity.log
+
+            git commit -m "Automatic activity update #$i"
+
+            # Small delay so each commit has a different timestamp
+            sleep 2
+          done
+
+      - name: Push Changes
+        run: |
+          git push
