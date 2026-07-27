@@ -21,10 +21,10 @@ jobs:
           git config user.name "abdulrahmanrifayath"
           git config user.email "abdulrahmanrifayath264@gmail.com"
 
-      - name: Generate 7-10 Random Commits
+      - name: Generate 1-3 Random Commits
         run: |
-          # Random number between 7 and 10
-          COMMITS=$(( ( RANDOM % 4 ) + 7 ))
+          # Random number between 1 and 3
+          COMMITS=$(( ( RANDOM % 3 ) + 1 ))
 
           echo "Creating $COMMITS commits..."
 
