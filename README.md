@@ -429,7 +429,7 @@ What I'm currently exploring:
 
 <!-- ===================== CONTACT ===================== -->
 
-## `09` / OPEN CONNECTION
+## `08` / OPEN CONNECTION
 
 <div align="center">
 
