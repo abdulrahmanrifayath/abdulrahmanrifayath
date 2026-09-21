@@ -423,44 +423,6 @@ What I'm currently exploring:
 <!-- ===================== GITHUB SIGNALS ===================== -->
 
 
-<!-- ===================== GITHUB TELEMETRY ===================== -->
-
-## `08` / REPOSITORY TELEMETRY
-
-<div align="center">
-
-<a href="https://github.com/abdulrahmanrifayath">
-  <img src="./assets/github-telemetry.svg"
-       width="100%"
-       alt="GitHub contribution telemetry showing current streak, longest streak, and contribution activity" />
-</a>
-
-<br>
-
-<sub>
-  Contribution telemetry generated from GitHub activity.
-  Updated automatically through GitHub Actions.
-</sub>
-
-<br><br>
-
-### CONTRIBUTION SNAKE
-
-<img src="https://raw.githubusercontent.com/abdulrahmanrifayath/abdulrahmanrifayath/output/github-snake-dark.svg"
-     alt="GitHub contribution snake animation"
-     width="100%" />
-
-<br>
-
-<sub>
-  The snake consumes contribution squares.
-</sub>
-
-</div>
-
----
-
-<!-- ===================== END TELEMETRY ===================== -->
 
 
 ---
