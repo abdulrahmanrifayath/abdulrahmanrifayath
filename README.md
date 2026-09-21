@@ -422,22 +422,46 @@ What I'm currently exploring:
 
 <!-- ===================== GITHUB SIGNALS ===================== -->
 
+
+<!-- ===================== GITHUB TELEMETRY ===================== -->
+
 ## `08` / REPOSITORY TELEMETRY
 
 <div align="center">
 
 <a href="https://github.com/abdulrahmanrifayath">
-<img src="https://github-readme-stats.vercel.app/api?username=abdulrahmanrifayath&show_icons=true&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=BC8CFF&text_color=C9D1D9&include_all_commits=true&count_private=true&rank_icon=github" width="48%" alt="GitHub statistics" />
+  <img src="./assets/github-telemetry.svg"
+       width="100%"
+       alt="GitHub contribution telemetry showing current streak, longest streak, and contribution activity" />
 </a>
-<a href="https://github.com/abdulrahmanrifayath">
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=abdulrahmanrifayath&layout=compact&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9&langs_count=8" width="48%" alt="Top programming languages" />
-</a>
+
+<br>
+
+<sub>
+  Contribution telemetry generated from GitHub activity.
+  Updated automatically through GitHub Actions.
+</sub>
 
 <br><br>
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=abdulrahmanrifayath&bg_color=0D1117&color=58A6FF&line=BC8CFF&point=39D353&area=true&hide_border=true" width="100%" alt="GitHub contribution activity" />
+### CONTRIBUTION SNAKE
+
+<img src="https://raw.githubusercontent.com/abdulrahmanrifayath/abdulrahmanrifayath/output/github-snake-dark.svg"
+     alt="GitHub contribution snake animation"
+     width="100%" />
+
+<br>
+
+<sub>
+  The snake consumes contribution squares.
+</sub>
 
 </div>
+
+---
+
+<!-- ===================== END TELEMETRY ===================== -->
+
 
 ---
 
