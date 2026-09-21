@@ -44,10 +44,9 @@ focus:
   - Intelligent Systems
   - Backend Engineering
   - Data-Driven Applications
-  - Developer Tools
-  - Cybersecurity
+  - Developing & Contributing
 mindset: Build. Break. Improve.
-location: India
+location: Coimbatore
 ```
 
 I enjoy turning complex problems into practical software.
