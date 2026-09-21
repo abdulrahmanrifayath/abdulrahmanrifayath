@@ -4,8 +4,16 @@ import json
 import urllib.request
 from datetime import date, timedelta
 
+# =====================================================
+# CONFIGURATION
+# =====================================================
+
 USERNAME = "abdulrahmanrifayath"
 TOKEN = os.environ["GH_TOKEN"]
+
+# =====================================================
+# FETCH GITHUB CONTRIBUTION DATA
+# =====================================================
 
 query = """
 query($user: String!) {
@@ -27,22 +35,34 @@ query($user: String!) {
 
 payload = json.dumps({
     "query": query,
-    "variables": {"user": USERNAME}
-}).encode()
+    "variables": {
+        "user": USERNAME
+    }
+}).encode("utf-8")
 
 request = urllib.request.Request(
     "https://api.github.com/graphql",
     data=payload,
     headers={
         "Authorization": f"Bearer {TOKEN}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "User-Agent": "GitHub-Telemetry"
     }
 )
 
 with urllib.request.urlopen(request) as response:
     result = json.load(response)
 
-calendar = result["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+# Check GraphQL errors
+if result.get("errors"):
+    raise RuntimeError(result["errors"])
+
+user_data = result.get("data", {}).get("user")
+
+if not user_data:
+    raise RuntimeError("GitHub user not found.")
+
+calendar = user_data["contributionsCollection"]["contributionCalendar"]
 
 days = [
     day
@@ -52,86 +72,84 @@ days = [
 
 days.sort(key=lambda x: x["date"])
 
+# =====================================================
+# PREPARE CONTRIBUTION DATA
+# =====================================================
+
 active = {
-    date.fromisoformat(d["date"])
-    for d in days
-    if d["contributionCount"] > 0
+    date.fromisoformat(day["date"])
+    for day in days
+    if day["contributionCount"] > 0
 }
 
-today = max(
-    date.fromisoformat(d["date"]) for d in days
+# Use the latest date returned by GitHub
+latest_date = max(
+    date.fromisoformat(day["date"])
+    for day in days
 )
 
-# Current streak
+# =====================================================
+# CURRENT STREAK
+# =====================================================
+
 current = 0
-cursor = today
+cursor = latest_date
 
 while cursor in active:
     current += 1
     cursor -= timedelta(days=1)
 
-# Longest streak
+if current > 0:
+    current_start = latest_date - timedelta(days=current - 1)
+    current_end = latest_date
+else:
+    current_start = None
+    current_end = None
+
+# =====================================================
+# LONGEST STREAK
+# =====================================================
+
+ordered = sorted(active)
+
 longest = 0
 run = 0
 longest_start = None
 longest_end = None
 run_start = None
+previous = None
 
-for d in sorted(active):
-    if run == 0:
-        run_start = d
+for day in ordered:
 
-    if d - (d - timedelta(days=1)) == timedelta(days=1):
-        pass
-
-    if run > 0 and d - previous != timedelta(days=1):
-        run = 0
-        run_start = d
-
-    run += 1
+    if previous is None or day - previous != timedelta(days=1):
+        run = 1
+        run_start = day
+    else:
+        run += 1
 
     if run > longest:
         longest = run
         longest_start = run_start
-        longest_end = d
+        longest_end = day
 
-    previous = d
+    previous = day
 
-# Fix the first-day edge case
-if active:
-    ordered = sorted(active)
-    longest = 1
-    run = 1
-    longest_start = ordered[0]
-    longest_end = ordered[0]
-    run_start = ordered[0]
+# =====================================================
+# FORMAT DATES
+# =====================================================
 
-    for i in range(1, len(ordered)):
-        if ordered[i] - ordered[i - 1] == timedelta(days=1):
-            run += 1
-        else:
-            run = 1
-            run_start = ordered[i]
+def fmt(day):
+    return day.strftime("%d %b %Y") if day else "—"
 
-        if run > longest:
-            longest = run
-            longest_start = run_start
-            longest_end = ordered[i]
+# =====================================================
+# GENERATE SVG DASHBOARD
+# =====================================================
 
-# Dates for current streak
-if current:
-    current_start = today - timedelta(days=current - 1)
-    current_end = today
-else:
-    current_start = None
-    current_end = None
+total_contributions = calendar["totalContributions"]
 
-def fmt(d):
-    return d.strftime("%d %b %Y") if d else "—"
-
-# Generate SVG
 svg = f"""<svg xmlns="http://www.w3.org/2000/svg"
 width="1000" height="330" viewBox="0 0 1000 330">
+
 <rect width="1000" height="330" rx="18" fill="#0D1117"/>
 
 <text x="42" y="45" fill="#8B949E"
@@ -148,7 +166,9 @@ GITHUB ACTIVITY REPORT
 stroke="#30363D"/>
 
 <text x="42" y="140" fill="#8B949E"
-font-family="monospace" font-size="14">CURRENT STREAK</text>
+font-family="monospace" font-size="14">
+CURRENT STREAK
+</text>
 
 <text x="42" y="183" fill="#58A6FF"
 font-family="monospace" font-size="40" font-weight="bold">
@@ -161,7 +181,9 @@ font-family="monospace" font-size="12">
 </text>
 
 <text x="360" y="140" fill="#8B949E"
-font-family="monospace" font-size="14">LONGEST STREAK</text>
+font-family="monospace" font-size="14">
+LONGEST STREAK
+</text>
 
 <text x="360" y="183" fill="#BC8CFF"
 font-family="monospace" font-size="40" font-weight="bold">
@@ -174,31 +196,52 @@ font-family="monospace" font-size="12">
 </text>
 
 <text x="710" y="140" fill="#8B949E"
-font-family="monospace" font-size="14">TOTAL CONTRIBUTIONS</text>
+font-family="monospace" font-size="14">
+TOTAL CONTRIBUTIONS
+</text>
 
 <text x="710" y="183" fill="#39D353"
 font-family="monospace" font-size="40" font-weight="bold">
-{calendar["totalContributions"]}
+{total_contributions}
 </text>
 
 <text x="710" y="210" fill="#C9D1D9"
 font-family="monospace" font-size="12">
-RECENT CONTRIBUTION YEAR
+CONTRIBUTION CALENDAR
 </text>
 
-<rect x="42" y="250" width="916" height="40" rx="8"
-fill="#161B22"/>
+<rect x="42" y="250" width="916" height="40"
+rx="8" fill="#161B22"/>
 
 <text x="60" y="276" fill="#58A6FF"
 font-family="monospace" font-size="13">
-STATUS: ONLINE  //  DATA SOURCE: GITHUB CONTRIBUTION CALENDAR
+STATUS: ONLINE // DATA SOURCE: GITHUB CONTRIBUTION CALENDAR
 </text>
 
 </svg>"""
 
+# =====================================================
+# SAVE SVG
+# =====================================================
+
 os.makedirs("assets", exist_ok=True)
 
-with open("assets/github-telemetry.svg", "w", encoding="utf-8") as f:
-    f.write(svg)
+output_path = "assets/github-telemetry.svg"
 
-print("Telemetry SVG generated successfully.")
+with open(output_path, "w", encoding="utf-8") as file:
+    file.write(svg)
+
+# =====================================================
+# LOG RESULTS
+# =====================================================
+
+print("=" * 55)
+print("RIFAYATH // GITHUB TELEMETRY")
+print("=" * 55)
+print(f"Current streak : {current} days")
+print(f"Current period : {fmt(current_start)} → {fmt(current_end)}")
+print(f"Longest streak : {longest} days")
+print(f"Longest period : {fmt(longest_start)} → {fmt(longest_end)}")
+print(f"Total commits  : {total_contributions}")
+print(f"Generated file : {output_path}")
+print("=" * 55)
