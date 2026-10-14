@@ -21,7 +21,6 @@
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/abdulrahmanrifayath)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arrahmanrifayath)
 [![Email](https://img.shields.io/badge/Email-Contact-58A6FF?style=flat-square&logo=gmail&logoColor=white)](mailto:abdulrahmanrifayath264@gmail.com)
-[![Profile Views](https://komarev.com/ghpvc/?username=abdulrahmanrifayath&style=flat-square&color=58A6FF&label=PROFILE+VIEWS)](https://github.com/abdulrahmanrifayath)
 
 </div>
 
