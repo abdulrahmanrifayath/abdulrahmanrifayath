@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate telemetry dashboard
         env:
-          GH_TOKEN: ${{ github.TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python generate_telemetry.py
 
       - name: Generate contribution snake
